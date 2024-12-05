@@ -1,5 +1,5 @@
 # Use OpenJDK as the base image
-FROM openjdk:11-jre-slim
+FROM bellsoft/liberica-openjdk-alpine:17
 
 # Set the working directory inside the container
 WORKDIR /app
