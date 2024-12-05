@@ -1,0 +1,15 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  health:
+    diskspace:
+      enabled: true
+      path: /
+      threshold: 100MB
+    # Enable more health indicators if needed (e.g., database, memory)
+    db:
+      enabled: false
+    redis:
+      enabled: false

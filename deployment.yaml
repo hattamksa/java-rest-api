@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-rest-api
+  labels:
+    app: java-rest-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-rest-api
+  template:
+    metadata:
+      labels:
+        app: java-rest-api
+    spec:
+      containers:
+      - name: java-rest-api
+        image: hatta1212/restjavaapi:latest # Replace with your image
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+        readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+        startupProbe:
+            initialDelaySeconds: 15
+            failureThreshold: 30
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
