@@ -1,48 +1,48 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-rest-jreyml
+  name: java-rest-jreendpoint
   labels:
-    app: java-rest-jreyml
+    app: java-rest-jreendpoint
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: java-rest-jreyml
+      app: java-rest-jreendpoint
   template:
     metadata:
       labels:
-        app: java-rest-jreyml
+        app: java-rest-jreendpoint
     spec:
       containers:
-      - name: java-rest-jreyml
-        image: hatta1212/restjavaapi:jreyml # Replace with your image
+      - name: java-rest-jreendpoint
+        image: hatta1212/restjavaapi:jreendpoint # Replace with your image
         ports:
         - containerPort: 8080
         livenessProbe:
             failureThreshold: 3
             httpGet:
-              path: /healthz/health
+              path: /actuator/health
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30
             periodSeconds: 20
             successThreshold: 1
             timeoutSeconds: 1
         readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /healthz/health
+              path: /actuator/health
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 1
         startupProbe:
-            failureThreshold: 30
+            failureThreshold: 60
             httpGet:
-              path: /healthz/health
+              path: /actuator/health
               port: 8080
               scheme: HTTP
             periodSeconds: 10
