@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-rest-api-application-yml
+  name: java-rest-api-liberica
   labels:
-    app: java-rest-api-application-yml
+    app: java-rest-api-liberica
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: java-rest-api-application-yml
+      app: java-rest-api-liberica
   template:
     metadata:
       labels:
-        app: java-rest-api-application-yml
+        app: java-rest-api-liberica
     spec:
       containers:
-      - name: java-rest-api-application-yml
-        image: hatta1212/restjavaapi:withapplicationyml-04 # Replace with your image
+      - name: java-rest-api-liberica
+        image: hatta1212/restjavaapi:liberica-01 # Replace with your image
         ports:
         - containerPort: 8080
         livenessProbe:
