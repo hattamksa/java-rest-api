@@ -1,24 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   name: java-rest-api
   labels:
     app: java-rest-api
 spec:
-  replicas: 1
   selector:
-    matchLabels:
-      app: java-rest-api
-  template:
-    metadata:
-      labels:
-        app: java-rest-api
-    spec:
-      containers:
-      - name: java-rest-api
-        image: hatta1212/restjavaapi:latest # Replace with your image
-        ports:
-        - containerPort: 8080
-        env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: prod
+    app: java-rest-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-java-service
+  labels:
+    app: test-java
+spec:
+  selector:
+    app: test-java
+  ports:
+    - protocol: TCP
+      port: 80       # External port to expose
+      targetPort: 8080 # Container's port
+  type: LoadBalancer

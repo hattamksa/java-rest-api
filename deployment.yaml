@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: java-rest-api
-        image: hatta1212/restjavaapi:latest # Replace with your image
+        image: hatta1212/restjavaapi:withapplicationyml-02 # Replace with your image
         ports:
         - containerPort: 8080
         livenessProbe:
             failureThreshold: 3
             httpGet:
-              path: /actuator/health
+              path: /healthz/health
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -32,7 +32,7 @@ spec:
         readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /actuator/health
+              path: /healthz/health
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -40,10 +40,9 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
         startupProbe:
-            initialDelaySeconds: 15
             failureThreshold: 30
             httpGet:
-              path: /actuator/health
+              path: /healthz/health
               port: 8080
               scheme: HTTP
             periodSeconds: 10
