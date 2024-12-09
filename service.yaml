@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: java-rest-api
+  name: java-rest-jreyml
   labels:
-    app: java-rest-api
+    app: java-rest-jreyml
 spec:
   selector:
-    app: java-rest-api
+    app: java-rest-jreyml
   ports:
     - protocol: TCP
       port: 80
