@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-rest-api
+  name: java-rest-api-application-yml
   labels:
-    app: java-rest-api
+    app: java-rest-api-application-yml
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: java-rest-api
+      app: java-rest-api-application-yml
   template:
     metadata:
       labels:
-        app: java-rest-api
+        app: java-rest-api-application-yml
     spec:
       containers:
-      - name: java-rest-api
-        image: hatta1212/restjavaapi:withapplicationyml-02 # Replace with your image
+      - name: java-rest-api-application-yml
+        image: hatta1212/restjavaapi:withapplicationyml-04 # Replace with your image
         ports:
         - containerPort: 8080
         livenessProbe:
