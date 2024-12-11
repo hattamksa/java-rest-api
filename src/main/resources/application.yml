@@ -1,16 +1,8 @@
 management:
   endpoints:
     web:
-      base-path: /healthz
       exposure:
-        include: health, info
-  health:
-    diskspace:
-      enabled: true
-      path: /
-      threshold: 100MB
-    # Enable more health indicators if needed (e.g., database, memory)
-    db:
-      enabled: false
-    redis:
-      enabled: false
+        include: health,info,env
+  endpoint:
+    health:
+      show-details: always

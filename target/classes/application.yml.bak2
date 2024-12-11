@@ -1,0 +1,18 @@
+management:
+  endpoints:
+    web:
+      base-path: /healthz
+      exposure:
+        include: health, info
+  health:
+    diskspace:
+      enabled: true
+      path: /
+      threshold: 100MB
+    db:
+      enabled: false
+    redis:
+      enabled: false
+#server:
+#  address: 0.0.0.0
+#  port: 8080

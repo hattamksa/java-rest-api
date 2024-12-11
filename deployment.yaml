@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: java-rest-api-liberica
-        image: hatta1212/restjavaapi:liberica-01 # Replace with your image
+        image: hatta1212/restjavaapi:liberica-09 # Replace with your image
         ports:
         - containerPort: 8080
         livenessProbe:
             failureThreshold: 3
             httpGet:
-              path: /healthz/health
+              path: /actuator/health/liveness
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -32,22 +32,22 @@ spec:
         readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /healthz/health
+              path: /actuator/health/readiness
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 15
+            initialDelaySeconds: 60
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 1
-        startupProbe:
-            failureThreshold: 30
-            httpGet:
-              path: /healthz/health
-              port: 8080
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 5
+       # startupProbe:
+       #     failureThreshold: 30
+       #     httpGet:
+       #       path: /actuator/health/startup
+       #       port: 8080
+       #       scheme: HTTP
+       #     periodSeconds: 10
+            #successThreshold: 1
+            #timeoutSeconds: 5
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: prod
